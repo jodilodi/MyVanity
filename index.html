@@ -9,7 +9,7 @@
 	    <title>My Vanity</title>
 
 	    <!--BootStrap-->
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	    <style>
 	    	html{
 	    		font-size: 14px;
@@ -25,7 +25,7 @@
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   			<h5 class="my-0 mr-md-auto font-weight-normal">MyVanity</h5>
   			<nav class="my-2 my-md-0 mr-md-3">
-  				<a class="p-2 text-dark" href="#">Welcome</a>
+  				<a id="site-message" class="p-2 text-dark" href="#"></a>
   			</nav>
   		</div>
 		<div class="container">
@@ -42,6 +42,23 @@
 
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function(){
+
+				var message = document.getElementById("site-message");
+
+				var dt = new Date();
+				if(dt.getHours() < 12 ){
+					message.innerText = "Good Morning";
+				}else if (dt.getHours() < 15){
+					message.innerText = "Good Afternoon";
+				}else{
+					message.innerText = "Good Evening";
+				}
+			});
+		</script>
 	</body>
 </html>
