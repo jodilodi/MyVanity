@@ -31,6 +31,22 @@
 				padding-top: 20px;
 			}
 	    </style>
+	    <style>
+			.passport{
+				background-color:#fff8e7;
+				height: 150px;
+				width:242px;
+				border-radius: 20px;
+			}
+
+			.eyeshadow{
+				border-radius: 50%;
+				height:50px;
+				width:50px;
+
+				margin-top:30px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -39,6 +55,29 @@
   				<a id="site-message" class="p-2 text-dark" href="#"></a>
   			</nav>
   		</div>
+
+		<!-- passport for the eyeshadow when you hover over the eyeshadow -->
+		<div id="passport" class="passport">
+			<div class="container">
+				<div class="row" style="height:30px">
+					<div id="passport-eyeshadow-name" class="col-sm-12 text-center">
+						Eyeshadow Name
+					</div>
+				</div>
+				<div class="row" style="height:120px">
+					<div class="col-sm-4" style="position:relative">
+						<div id="passport-eyeshadow-color" class="eyeshadow" style="background-color: #0000FF">
+						</div>
+					</div>
+					<div class="col-sm-8 text-left">
+						<div id="passport-palette-name">Palette</div>
+						<div id="passport-brand-name">Brand</div>
+						<div id="passport-finish-name">Finish</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
@@ -48,7 +87,7 @@
 			</div>
 		</div>
 
-
+		
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -89,10 +128,19 @@
  					$.each((eyeShadows), function(key, value){
  						var eyeshadow = document.createElement("div");
  						eyeshadow.classList.add("eyeshadow");
+ 						eyeshadow.innerText = key;
 	 					eyeshadow.style.backgroundColor = value;
  						eyeshadow.style.width = "50px";
  						eyeshadow.style.height = "50px";
+						eyeshadow.style.color = value;
+						eyeshadow.style.overflow = "hidden";
+ 						$(eyeshadow).hover(function(){
+ 							console.log("Here");
 
+ 							document.getElementById("passport-eyeshadow-name").innerText = this.innerText;
+ 							document.getElementById("passport-eyeshadow-color").style.backgroundColor = this.style.backgroundColor;
+
+ 						});
  						newBrandDiv.appendChild(eyeshadow);
  					});
  				});
