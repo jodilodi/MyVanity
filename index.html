@@ -22,7 +22,13 @@
 			}
 
 			.eyeshadow{
+				border-radius: 50%;
 				float:left;
+			}
+
+			.brand{
+				overflow:hidden;
+				padding-top: 20px;
 			}
 	    </style>
 	</head>
@@ -37,7 +43,6 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div id="AllBrands">
-						<div id="Anastasia"></div>
 					</div>
 				</div>
 			</div>
@@ -68,28 +73,19 @@
 		</script>
 		<script>
 			$(document).ready(function(){
- 				// console.log("hello world");
- 				// console.log(window.Anastasia);
- 				// var brandDiv = document.getElementById('Anastasia');
- 				// $.each((window.Anastasia), function(key,value){
- 				// 	console.log(key + ": " + value);
-
- 				// 	var eyeshadow = document.createElement("div");
- 				// 	eyeshadow.style.backgroundColor = value;
- 				// 	eyeshadow.style.width = "50px";
- 				// 	eyeshadow.style.height = "50px";
-
- 				// 	brandDiv.appendChild(eyeshadow);
- 				// })
  				var allBrandDiv = document.getElementById('AllBrands')
  				$.each((window.brands), function(value){
  					var newBrandDiv = document.createElement("div");
  					newBrandDiv.id = window.brands[value];
  					newBrandDiv.classList.add("brand");
  					allBrandDiv.appendChild(newBrandDiv);
+ 					//add brand title
+ 					var title = document.createElement("h3");
+ 					title.innerText = window.brands[value].replace( new RegExp("_", "g"), " ");
+ 					newBrandDiv.appendChild(title);
 
+ 					//add eyeshadow divs
  					var eyeShadows = window[window.brands[value]];
- 					
  					$.each((eyeShadows), function(key, value){
  						var eyeshadow = document.createElement("div");
  						eyeshadow.classList.add("eyeshadow");
