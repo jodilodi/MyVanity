@@ -37,6 +37,8 @@
 				height: 150px;
 				width:242px;
 				border-radius: 20px;
+				z-index: 10;
+				visibility: hidden;
 			}
 
 			.eyeshadow{
@@ -44,7 +46,7 @@
 				height:50px;
 				width:50px;
 
-				margin-top:30px;
+				margin-top:25px;
 			}
 		</style>
 	</head>
@@ -55,6 +57,17 @@
   				<a id="site-message" class="p-2 text-dark" href="#"></a>
   			</nav>
   		</div>
+
+		
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="AllBrands">
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- passport for the eyeshadow when you hover over the eyeshadow -->
 		<div id="passport" class="passport">
@@ -72,22 +85,11 @@
 					<div class="col-sm-8 text-left">
 						<div id="passport-palette-name">Palette</div>
 						<div id="passport-brand-name">Brand</div>
-						<div id="passport-finish-name">Finish</div>
+						<div id="passport-finish-name"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="AllBrands">
-					</div>
-				</div>
-			</div>
-		</div>
-
-		
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -95,6 +97,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 		<script src="brands.js"></script>
 		<script src="eyeshadow.js"></script>
+		<script src="eyeshadowdetails.js"></script>
 		<script>
 			$(document).ready(function(){
 				var message = document.getElementById("site-message");
@@ -109,6 +112,15 @@
 
 				
 			});
+		</script>
+		<script>
+			function findEyeshadow(name){
+				for(var eyeshadow in allEyeshadowDetails){
+					if(allEyeshadowDetails[eyeshadow].name == name){
+						return allEyeshadowDetails[eyeshadow];
+					}
+				}
+			}
 		</script>
 		<script>
 			$(document).ready(function(){
@@ -134,13 +146,21 @@
  						eyeshadow.style.height = "50px";
 						eyeshadow.style.color = value;
 						eyeshadow.style.overflow = "hidden";
- 						$(eyeshadow).hover(function(){
- 							console.log("Here");
 
+ 						$(eyeshadow).hover(function(e){
+ 							eyeshadowDetails = findEyeshadow(this.innerText);
+ 							passport = document.getElementById("passport");
+ 							passport.style.position = "absolute";
+ 							passport.style.left =  e.clientX+ "px";
+ 							passport.style.top =  e.clientY + "px";
+ 							passport.style.visibility = "visible";
+ 							// $(passport).css('')
  							document.getElementById("passport-eyeshadow-name").innerText = this.innerText;
  							document.getElementById("passport-eyeshadow-color").style.backgroundColor = this.style.backgroundColor;
-
+ 							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
+ 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
  						});
+ 						
  						newBrandDiv.appendChild(eyeshadow);
  					});
  				});
