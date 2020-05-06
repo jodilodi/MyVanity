@@ -45,8 +45,12 @@
 				border-radius: 50%;
 				height:50px;
 				width:50px;
+				margin-top: 35px;
+			}
 
-				margin-top:25px;
+			#passport-eyeshadow-name{
+				border-bottom: 1px solid black;
+				line-height:30px;
 			}
 		</style>
 	</head>
@@ -121,6 +125,10 @@
 					}
 				}
 			}
+
+			$(".passport").click(function(e){
+				this.style.visibility = "hidden";
+			});
 		</script>
 		<script>
 			$(document).ready(function(){
@@ -146,22 +154,26 @@
  						eyeshadow.style.height = "50px";
 						eyeshadow.style.color = value;
 						eyeshadow.style.overflow = "hidden";
-
- 						$(eyeshadow).hover(function(e){
+						newBrandDiv.appendChild(eyeshadow);
+ 						
+ 						//click over hover
+ 						$(eyeshadow).click(function(e){
  							eyeshadowDetails = findEyeshadow(this.innerText);
  							passport = document.getElementById("passport");
  							passport.style.position = "absolute";
- 							passport.style.left =  e.clientX+ "px";
- 							passport.style.top =  e.clientY + "px";
+ 							// passport.style.left =  e.clientX+ "px";
+ 							// passport.style.top =  (e.clientY) + "px";
  							passport.style.visibility = "visible";
- 							// $(passport).css('')
+ 							console.log(this.getBoundingClientRect());
+ 							passport.style.left = (this.getBoundingClientRect().left - 15) + "px";
+ 							passport.style.top = (this.getBoundingClientRect().top - 65 + window.scrollY) + "px";
  							document.getElementById("passport-eyeshadow-name").innerText = this.innerText;
  							document.getElementById("passport-eyeshadow-color").style.backgroundColor = this.style.backgroundColor;
  							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
  							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
  						});
  						
- 						newBrandDiv.appendChild(eyeshadow);
+ 						
  					});
  				});
 			});
