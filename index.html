@@ -38,7 +38,7 @@
 				width:242px;
 				border-radius: 20px;
 				z-index: 10;
-				visibility: hidden;
+				display:none;
 			}
 
 			.eyeshadow{
@@ -96,7 +96,9 @@
 		</div>
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    	<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 		<script src="brands.js"></script>
@@ -127,7 +129,7 @@
 			}
 
 			$(".passport").click(function(e){
-				this.style.visibility = "hidden";
+				$(this).hide(500, "swing");
 			});
 		</script>
 		<script>
@@ -160,20 +162,35 @@
  						$(eyeshadow).click(function(e){
  							eyeshadowDetails = findEyeshadow(this.innerText);
  							passport = document.getElementById("passport");
- 							passport.style.position = "absolute";
- 							// passport.style.left =  e.clientX+ "px";
- 							// passport.style.top =  (e.clientY) + "px";
- 							passport.style.visibility = "visible";
- 							console.log(this.getBoundingClientRect());
- 							passport.style.left = (this.getBoundingClientRect().left - 15) + "px";
- 							passport.style.top = (this.getBoundingClientRect().top - 65 + window.scrollY) + "px";
- 							document.getElementById("passport-eyeshadow-name").innerText = this.innerText;
- 							document.getElementById("passport-eyeshadow-color").style.backgroundColor = this.style.backgroundColor;
- 							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
- 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
- 						});
- 						
- 						
+ 							eyeshadowinfo = this;
+ 							if(passport.style.display == "block"){
+ 								$(passport).hide(500, "swing", function(){
+ 									passport.style.position = "absolute";
+		 							passport.style.left = (eyeshadowinfo.getBoundingClientRect().left - 15) + "px";
+		 							passport.style.top = (eyeshadowinfo.getBoundingClientRect().top - 65 + window.scrollY) + "px";
+
+		 							document.getElementById("passport-eyeshadow-name").innerText = eyeshadowinfo.innerText;
+		 							document.getElementById("passport-eyeshadow-color").style.backgroundColor = eyeshadowinfo.style.backgroundColor;
+		 							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
+		 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
+									document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish + " finish";
+									
+									$("#passport").show(500, "swing");
+ 								});
+ 							}else{
+	 							passport.style.position = "absolute";
+	 							passport.style.left = (this.getBoundingClientRect().left - 15) + "px";
+	 							passport.style.top = (this.getBoundingClientRect().top - 65 + window.scrollY) + "px";
+
+	 							document.getElementById("passport-eyeshadow-name").innerText = this.innerText;
+	 							document.getElementById("passport-eyeshadow-color").style.backgroundColor = this.style.backgroundColor;
+	 							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
+	 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
+								document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish + " finish";
+								
+								$("#passport").show(500, "swing");
+							}
+  						});						
  					});
  				});
 			});
