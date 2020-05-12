@@ -53,6 +53,14 @@
 				line-height:30px;
 			}
 		</style>
+		<style>
+			.sparkle_image, .satin_image{
+				transform: rotate(270deg);
+				width: 50px;
+				height:50px;
+				border-radius: 50%;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -84,6 +92,7 @@
 				<div class="row" style="height:120px">
 					<div class="col-sm-4" style="position:relative">
 						<div id="passport-eyeshadow-color" class="eyeshadow" style="background-color: #0000FF">
+							<img src="images/satin.png" class="sparkle_image" id="passport_image_sparkle">
 						</div>
 					</div>
 					<div class="col-sm-8 text-left">
@@ -150,31 +159,65 @@
  					$.each((eyeShadows), function(key, value){
  						var eyeshadow = document.createElement("div");
  						eyeshadow.classList.add("eyeshadow");
- 						eyeshadow.innerText = key;
+ 						eyeshadow.classList.add(key.split(' ').join('_'))
+ 						//eyeshadow.innerText = key;
 	 					eyeshadow.style.backgroundColor = value;
  						eyeshadow.style.width = "50px";
  						eyeshadow.style.height = "50px";
 						eyeshadow.style.color = value;
 						eyeshadow.style.overflow = "hidden";
+
+						//check finish
+						eyeshadowDetails = findEyeshadow(key);
+						if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
+							var image = document.createElement("img");
+							image.src = "images/satin.png";
+							image.classList.add("satin_image");
+							eyeshadow.appendChild(image);
+						}else if (eyeshadowDetails.finish != "matte"){
+							var image = document.createElement("img");
+							image.src = "images/sparkle.png";
+							image.classList.add("sparkle_image");
+							eyeshadow.appendChild(image);
+						}
+
+
 						newBrandDiv.appendChild(eyeshadow);
  						
  						//click over hover
  						$(eyeshadow).click(function(e){
- 							eyeshadowDetails = findEyeshadow(this.innerText);
+ 							//eyeshadowDetails = findEyeshadow(this.innerText);
+ 							eyeshadowDetails = findEyeshadow(this.classList[1].split('_').join(' '));
  							passport = document.getElementById("passport");
  							eyeshadowinfo = this;
+ 							passport_sparkle_image = document.getElementById("passport_image_sparkle");
  							if(passport.style.display == "block"){
  								$(passport).hide(500, "swing", function(){
  									passport.style.position = "absolute";
 		 							passport.style.left = (eyeshadowinfo.getBoundingClientRect().left - 15) + "px";
 		 							passport.style.top = (eyeshadowinfo.getBoundingClientRect().top - 65 + window.scrollY) + "px";
 
-		 							document.getElementById("passport-eyeshadow-name").innerText = eyeshadowinfo.innerText;
+		 							// document.getElementById("passport-eyeshadow-name").innerText = eyeshadowinfo.innerText;
+		 							document.getElementById("passport-eyeshadow-name").innerText = eyeshadowinfo.classList[1].split('_').join(' ');
 		 							document.getElementById("passport-eyeshadow-color").style.backgroundColor = eyeshadowinfo.style.backgroundColor;
 		 							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
 		 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
 									document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish + " finish";
 									
+									// if(eyeshadowDetails.finish != "matte"){
+									// 	passport_sparkle_image.style.visibility = "visible";
+									// }else{
+									// 	passport_sparkle_image.style.visibility = "hidden";
+									// }
+									if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
+										passport_sparkle_image.src = "images/satin.png";
+										passport_sparkle_image.style.visibility = "visible";
+									}else if (eyeshadowDetails.finish != "matte"){
+										passport_sparkle_image.src = "images/sparkle.png";
+										passport_sparkle_image.style.visibility = "visible";
+									}else{
+										passport_sparkle_image.style.visibility = "hidden";
+									}
 									$("#passport").show(500, "swing");
  								});
  							}else{
@@ -182,12 +225,27 @@
 	 							passport.style.left = (this.getBoundingClientRect().left - 15) + "px";
 	 							passport.style.top = (this.getBoundingClientRect().top - 65 + window.scrollY) + "px";
 
-	 							document.getElementById("passport-eyeshadow-name").innerText = this.innerText;
+	 							document.getElementById("passport-eyeshadow-name").innerText = eyeshadowinfo.classList[1].split('_').join(' ');
 	 							document.getElementById("passport-eyeshadow-color").style.backgroundColor = this.style.backgroundColor;
 	 							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
 	 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
 								document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish + " finish";
 								
+								// if(eyeshadowDetails.finish != "matte"){
+								// 		passport_sparkle_image.style.visibility = "visible";
+								// }else{
+								// 		passport_sparkle_image.style.visibility = "hidden";
+								// }
+								if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
+										passport_sparkle_image.src = "images/satin.png";
+										passport_sparkle_image.style.visibility = "visible";
+								}else if (eyeshadowDetails.finish != "matte"){
+										passport_sparkle_image.src = "images/sparkle.png";
+										passport_sparkle_image.style.visibility = "visible";
+								}else{
+										passport_sparkle_image.style.visibility = "hidden";
+								}
+
 								$("#passport").show(500, "swing");
 							}
   						});						
