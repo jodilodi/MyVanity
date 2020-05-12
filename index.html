@@ -95,6 +95,8 @@
   			<h5 class="my-0 mr-md-auto font-weight-normal">MyVanity</h5>
   			<nav class="my-2 my-md-0 mr-md-3">
   				<a id="site-message" class="p-2 text-dark" href="#"></a>
+  				<a id="show-favs" class="p-2 text-dark" href="#">Show Favs</a>
+  				<a id="show-all" class="p-2 text-dark" href="#">Show All</a>
   			</nav>
   		</div>
 
@@ -320,6 +322,39 @@
 					//switch to fas
 					this.classList.remove("far");
 					this.classList.add("fas");
+				}
+			});
+		</script>
+		<script>
+			$("#show-favs").click(function(){
+				// var values = {};
+				var names = [];
+				var keys = Object.keys(localStorage), i = keys.length;
+				while(i--){
+					if(localStorage.getItem(keys[i]) == 1){
+						
+						names.push(keys[i]);
+					}
+				}
+				var allEyeshadows = document.getElementsByClassName("eyeshadow");
+				for(var i = 0; i < allEyeshadows.length; i++){
+					// console.log(allEyeshadows[i]);
+					var thisbrand = allEyeshadows[i].parentElement.id.split('_').join(' ');
+					// var thiseyeshadow = allEyeshadows[i].innerText;
+					var thiseyeshadow = allEyeshadows[i].classList[1].split('_').join(' ');
+					var line = thisbrand + " " + thiseyeshadow;
+					if(names.includes(line)){
+						allEyeshadows[i].style.display = "block";
+					}
+					else{
+						allEyeshadows[i].style.display = "none";
+					}
+				}
+			});
+			$("#show-all").click(function(){
+				var allEyeshadows = document.getElementsByClassName("eyeshadow");
+				for(var i = 0; i < allEyeshadows.length; i++){
+					allEyeshadows[i].style.display = "block";
 				}
 			});
 		</script>
