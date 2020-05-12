@@ -45,12 +45,29 @@
 				border-radius: 50%;
 				height:50px;
 				width:50px;
-				margin-top: 35px;
+				/*margin-top: 35px;*/
 			}
 
 			#passport-eyeshadow-name{
 				border-bottom: 1px solid black;
 				line-height:30px;
+			}
+
+			.passport-eyeshadow{
+				background-color: #0000FF; 
+				margin-top: 35px;
+			}
+
+			.passport-info{
+				font-size:12px;
+			}
+
+			#passport-palette-name{
+				font-style:italic;
+			}
+
+			#passport-brand-name{
+				font-weight:bold;
 			}
 		</style>
 		<style>
@@ -91,14 +108,14 @@
 				</div>
 				<div class="row" style="height:120px">
 					<div class="col-sm-4" style="position:relative">
-						<div id="passport-eyeshadow-color" class="eyeshadow" style="background-color: #0000FF">
+						<div id="passport-eyeshadow-color" class="eyeshadow passport-eyeshadow" >
 							<img src="images/satin.png" class="sparkle_image" id="passport_image_sparkle">
 						</div>
 					</div>
 					<div class="col-sm-8 text-left">
-						<div id="passport-palette-name">Palette</div>
-						<div id="passport-brand-name">Brand</div>
-						<div id="passport-finish-name"></div>
+						<div id="passport-palette-name" class="passport-info">Palette</div>
+						<div id="passport-brand-name" class="passport-info">Brand</div>
+						<div id="passport-finish-name" class="passport-info">Finish</div>
 					</div>
 				</div>
 			</div>
@@ -135,6 +152,8 @@
 						return allEyeshadowDetails[eyeshadow];
 					}
 				}
+				console.log(name);
+				return -1;
 			}
 
 			$(".passport").click(function(e){
@@ -202,7 +221,7 @@
 		 							document.getElementById("passport-eyeshadow-color").style.backgroundColor = eyeshadowinfo.style.backgroundColor;
 		 							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
 		 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
-									document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish + " finish";
+									document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish.charAt(0).toUpperCase() + eyeshadowDetails.finish.slice(1) + " Finish";
 									
 									// if(eyeshadowDetails.finish != "matte"){
 									// 	passport_sparkle_image.style.visibility = "visible";
@@ -229,7 +248,7 @@
 	 							document.getElementById("passport-eyeshadow-color").style.backgroundColor = this.style.backgroundColor;
 	 							document.getElementById("passport-palette-name").innerText = eyeshadowDetails.palette;
 	 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
-								document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish + " finish";
+								document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish.charAt(0).toUpperCase() + eyeshadowDetails.finish.slice(1) + " Finish";
 								
 								// if(eyeshadowDetails.finish != "matte"){
 								// 		passport_sparkle_image.style.visibility = "visible";
