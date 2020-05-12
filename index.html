@@ -11,6 +11,9 @@
 	    <!--BootStrap-->
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	    
+	    <!-- Font Awesome -->
+	    <link href="style/css/all.css" rel="stylesheet">
+
 	    <style>
 	    	html{
 	    		font-size: 14px;
@@ -30,8 +33,7 @@
 				overflow:hidden;
 				padding-top: 20px;
 			}
-	    </style>
-	    <style>
+
 			.passport{
 				background-color:#fff8e7;
 				height: 150px;
@@ -48,9 +50,11 @@
 				/*margin-top: 35px;*/
 			}
 
-			#passport-eyeshadow-name{
+			#passport-eyeshadow-name, #passport-like-icon, #passport-close-icon{
+			line-height:30px;
+			}
+			#name-row{
 				border-bottom: 1px solid black;
-				line-height:30px;
 			}
 
 			.passport-eyeshadow{
@@ -69,8 +73,7 @@
 			#passport-brand-name{
 				font-weight:bold;
 			}
-		</style>
-		<style>
+		
 			.sparkle_image, .satin_image{
 				transform: rotate(270deg);
 				width: 50px;
@@ -78,6 +81,14 @@
 				border-radius: 50%;
 			}
 		</style>
+<!-- 		<style>
+			/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+		</style> -->
 	</head>
 	<body>
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -86,8 +97,6 @@
   				<a id="site-message" class="p-2 text-dark" href="#"></a>
   			</nav>
   		</div>
-
-		
 
 		<div class="container">
 			<div class="row">
@@ -101,9 +110,13 @@
 		<!-- passport for the eyeshadow when you hover over the eyeshadow -->
 		<div id="passport" class="passport">
 			<div class="container">
-				<div class="row" style="height:30px">
-					<div id="passport-eyeshadow-name" class="col-sm-12 text-center">
+				<div id="name-row" class="row" style="height:30px">
+					<div id="passport-eyeshadow-name" class="col-sm-8 text-center">
 						Eyeshadow Name
+					</div>
+					<div class="col-sm-4 text-center" style="display:inline-block">
+						<i id="passport-like-icon" class="far fa-heart"></i>
+						<i id="passport-close-icon" class="far fa-window-close"></i>
 					</div>
 				</div>
 				<div class="row" style="height:120px">
@@ -136,7 +149,7 @@
 				var dt = new Date();
 				if(dt.getHours() < 12 ){
 					message.innerText = "Good Morning";
-				}else if (dt.getHours() < 16){
+				}else if (dt.getHours() < 17){
 					message.innerText = "Good Afternoon";
 				}else{
 					message.innerText = "Good Evening";
@@ -152,12 +165,12 @@
 						return allEyeshadowDetails[eyeshadow];
 					}
 				}
-				console.log(name);
+				
 				return -1;
 			}
 
-			$(".passport").click(function(e){
-				$(this).hide(500, "swing");
+			$("#passport-close-icon").click(function(e){
+				$("#passport").hide(500, "swing");
 			});
 		</script>
 		<script>
@@ -210,6 +223,26 @@
  							passport = document.getElementById("passport");
  							eyeshadowinfo = this;
  							passport_sparkle_image = document.getElementById("passport_image_sparkle");
+ 							
+ 							//get local storage
+ 							var brand = eyeshadowDetails.brand;
+ 							var name = eyeshadowinfo.classList[1].split('_').join(' ');
+ 							var line = brand + " " + name;
+ 							var result = 0;
+ 							if(localStorage[line]){
+ 								result = localStorage[line];
+ 							}
+
+ 							var likeicon = document.getElementById("passport-like-icon");
+ 							if(result == 1){
+								likeicon.classList.remove("far");
+								likeicon.classList.add("fas");
+ 							}else{
+ 								likeicon.classList.remove("fas");
+ 								likeicon.classList.add("far");
+ 							}
+
+
  							if(passport.style.display == "block"){
  								$(passport).hide(500, "swing", function(){
  									passport.style.position = "absolute";
@@ -223,11 +256,6 @@
 		 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
 									document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish.charAt(0).toUpperCase() + eyeshadowDetails.finish.slice(1) + " Finish";
 									
-									// if(eyeshadowDetails.finish != "matte"){
-									// 	passport_sparkle_image.style.visibility = "visible";
-									// }else{
-									// 	passport_sparkle_image.style.visibility = "hidden";
-									// }
 									if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
 										passport_sparkle_image.src = "images/satin.png";
 										passport_sparkle_image.style.visibility = "visible";
@@ -250,11 +278,6 @@
 	 							document.getElementById("passport-brand-name").innerText = eyeshadowDetails.brand;
 								document.getElementById("passport-finish-name").innerText = eyeshadowDetails.finish.charAt(0).toUpperCase() + eyeshadowDetails.finish.slice(1) + " Finish";
 								
-								// if(eyeshadowDetails.finish != "matte"){
-								// 		passport_sparkle_image.style.visibility = "visible";
-								// }else{
-								// 		passport_sparkle_image.style.visibility = "hidden";
-								// }
 								if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
 										passport_sparkle_image.src = "images/satin.png";
 										passport_sparkle_image.style.visibility = "visible";
@@ -270,6 +293,34 @@
   						});						
  					});
  				});
+			});
+		</script>
+		<script>
+			$("#passport-like-icon").click(function(){
+				//get brand and eyeshadow name
+				var brand = document.getElementById("passport-brand-name").innerText;
+				var name = document.getElementById("passport-eyeshadow-name").innerText;
+				var line = brand + " " + name;
+				console.log(line);
+				// localStorage.setItem();
+				//toggle the value here
+				//fas is solid
+				//far is outline
+
+				if (this.classList.contains("fas")){
+					//go to 0
+					localStorage.setItem(line, 0);
+					//switch to far
+					this.classList.remove("fas");
+					this.classList.add("far");
+				}
+				else{
+					//go to 1
+					localStorage.setItem(line, 1);
+					//switch to fas
+					this.classList.remove("far");
+					this.classList.add("fas");
+				}
 			});
 		</script>
 	</body>
