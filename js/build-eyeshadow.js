@@ -24,6 +24,7 @@ $(document).ready(function(){
 		plusIcon.id = window.brands[value] + "icon";
 		plusIcon.classList.add("fas");
 		plusIcon.classList.add("fa-chevron-down");
+		plusIcon.classList.add("brand-arrow");
 		title.appendChild(plusIcon);
 		
 		newBrandDiv.appendChild(title);

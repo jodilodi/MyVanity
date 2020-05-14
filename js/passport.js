@@ -85,6 +85,8 @@ $("#passport-like-icon").click(function(){
 });
 
 $("#passport-palette-icon").click(function(){
+	document.getElementById("reset").style.display = "inline-block";
+
 	//close the passport
 	$("#passport").hide(500, "swing", function(){
 	//get the palette and brand

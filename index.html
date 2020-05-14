@@ -14,14 +14,21 @@
 	    <!-- Font Awesome -->
 	    <link href="style/css/all.css" rel="stylesheet">
 
+	    <!-- font style -->
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital@1&display=swap" rel="stylesheet">
+	    
 	    <style>
 	    	html{
 	    		font-size: 14px;
+	    		
 	    	}
 	    	@media (min-width: 768px) {
   				html {
     				font-size: 16px;
   				}
+			}
+			body{
+				font-family: 'Fira Sans', sans-serif;
 			}
 
 			.eyeshadow{
@@ -33,6 +40,7 @@
 			.brand{
 				overflow:hidden;
 				padding-top: 20px;
+				color:black;
 			}
 
 			.passport{
@@ -85,14 +93,11 @@
 				display:inline-block;
 			}
 		</style>
-<!-- 		<style>
-			/* The sticky class is added to the header with JS when it reaches its scroll position */
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%
-}
-		</style> -->
+		<style>
+			.brand-arrow{
+				margin-left:10px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -102,7 +107,7 @@
   				<!-- should be actual link not javascript (too heavy else wise) -->
   				<!-- <a id="show-favs" class="p-2 text-dark" href="#">Show Favs</a>
   				<a id="show-all" class="p-2 text-dark" href="#">Show All</a> -->
-  				<a id="reset" class="p-2 text-dark" href="#">Reset</a>
+  				<a id="reset" class="p-2 text-dark" href="#" style="display: none">Reset</a>
   			</nav>
   		</div>
 

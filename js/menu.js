@@ -64,4 +64,6 @@ $("#reset").click(function(){
 			allEyeshadows[i].style.display = "inline-block";
 		}
 	});
+
+	this.style.display = "none";
 });
