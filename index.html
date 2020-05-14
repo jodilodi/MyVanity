@@ -39,7 +39,7 @@
 
 			.brand{
 				overflow:hidden;
-				padding-top: 20px;
+				/*padding-top: 20px;*/
 				color:black;
 			}
 
@@ -106,6 +106,7 @@
   				<a id="site-message" class="p-2 text-dark" href="#"></a>
   				<!-- should be actual link not javascript (too heavy else wise) -->
   				<a id="show-favs" class="p-2 text-dark" href="fav.html">Show Favs</a>
+  				<a id="show-by-palette" class="p-2 text-dark" href="palette.html">Show by Palette</a>
   				<!-- <a id="show-all" class="p-2 text-dark" href="#">Show All</a> -->
   				<a id="reset" class="p-2 text-dark" href="#" style="display: none">Reset</a>
   			</nav>
@@ -173,16 +174,16 @@
 			});
 		</script>
 		<script>
-			function findEyeshadow(name){
+			function findEyeshadow(name, brand){
 				for(var eyeshadow in allEyeshadowDetails){
-					if(allEyeshadowDetails[eyeshadow].name == name){
+					if(allEyeshadowDetails[eyeshadow].name == name && allEyeshadowDetails[eyeshadow].brand == brand){
 						return allEyeshadowDetails[eyeshadow];
 					}
 				}
 				return -1;
 			}			
 		</script>
-		<script src="js/build-eyeshadow.js"></script>
+		<script src="js/build-eyeshadow-v2.js"></script>
 		<script src="js/passport.js"></script>
 		<script src="js/menu.js"></script>
 	</body>
