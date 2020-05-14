@@ -171,14 +171,14 @@
 			});
 		</script>
 		<script>
-			function findEyeshadow(name){
+			function findEyeshadow(name, brand){
 				for(var eyeshadow in allEyeshadowDetails){
-					if(allEyeshadowDetails[eyeshadow].name == name){
+					if(allEyeshadowDetails[eyeshadow].name == name && allEyeshadowDetails[eyeshadow].brand == brand){
 						return allEyeshadowDetails[eyeshadow];
 					}
 				}
 				return -1;
-			}			
+			}				
 		</script>
 		<script>
 			$(document).ready(function(){
@@ -190,13 +190,13 @@
 						names.push(keys[i]);
 					}
 				}
-
+				console.log(names);
 				//go through the favorite arrays
 				for(i = 0; i < names.length; i++){
 					console.log(names[i]);
 					var brand = names[i].split("_")[1];
 					var eyeshadowname = names[i].split("_")[2];
-
+					console.log(eyeshadowname);
 					//create brand or if it exists use
 					if(document.getElementById(brand) == null){
 						//create element
@@ -226,16 +226,16 @@
 					var eyeshadow = document.createElement("div");
 					eyeshadow.classList.add("eyeshadow");
 					eyeshadow.classList.add(eyeshadowname.split(' ').join('_'))
-					
+					eyeshadow.classList.add(brand.split(' ').join('_'));
 
-					eyeshadow.style.backgroundColor = window[brand][eyeshadowname];
+					eyeshadow.style.backgroundColor = window[brand.split(' ').join('_')][eyeshadowname];
 					eyeshadow.style.width = "50px";
 					eyeshadow.style.height = "50px";
-					eyeshadow.style.color = window[brand][eyeshadowname];
+					eyeshadow.style.color = window[brand.split(' ').join('_')][eyeshadowname];
 					eyeshadow.style.overflow = "hidden";
 
 					//check finish
-					eyeshadowDetails = findEyeshadow(eyeshadowname);
+					eyeshadowDetails = findEyeshadow(eyeshadowname, brand);
 					if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
 						var image = document.createElement("img");
 						image.src = "images/satin.png";
@@ -253,7 +253,7 @@
 					$(eyeshadow).on("click", showPassport);
 
 				}//end of for loop
-});
-</script>
+			});
+		</script>
 	</body>
 </html>
