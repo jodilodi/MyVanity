@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="Jodi Lo">
+	    <title>My Vanity</title>
+
+	    <!--BootStrap-->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	    
+	    <!-- Font Awesome -->
+	    <link href="style/css/all.css" rel="stylesheet">
+
+	    <!-- font style -->
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital@1&display=swap" rel="stylesheet">
+	    
+	    <style>
+	    	html{
+	    		font-size: 14px;
+	    		
+	    	}
+	    	@media (min-width: 768px) {
+  				html {
+    				font-size: 16px;
+  				}
+			}
+			body{
+				font-family: 'Fira Sans', sans-serif;
+			}
+
+			.eyeshadow{
+				border-radius: 50%;
+				height:50px;
+				width:50px;
+			}
+
+			.brand{
+				overflow:hidden;
+				/*padding-top: 20px;*/
+				color:black;
+			}
+
+			.passport{
+				background-color:#fff8e7;
+				height: 150px;
+				width:242px;
+				border-radius: 20px;
+				z-index: 10;
+				display:none;
+			}
+
+			#passport-eyeshadow-name, #passport-like-icon, #passport-close-icon{
+			line-height:30px;
+			}
+
+			#name-row{
+				border-bottom: 1px solid black;
+			}
+
+			.passport-eyeshadow{
+				background-color: #0000FF; 
+				margin-top: 35px;
+				border-radius: 50%;
+				float:left;
+				height:50px;
+				width:50px;
+			}
+
+			.passport-info{
+				font-size:12px;
+			}
+
+			#passport-palette-name{
+				font-style:italic;
+			}
+
+			#passport-brand-name{
+				font-weight:bold;
+			}
+		
+			.sparkle_image, .satin_image{
+				transform: rotate(270deg);
+				width: 50px;
+				height:50px;
+				border-radius: 50%;
+			}
+		</style>
+		<style>
+			.eyeshadow-display{
+				width:95%;
+			}
+
+			.eyeshadow-display div{
+				display:inline-block;
+			}
+		</style>
+		<style>
+			.brand-arrow{
+				margin-left:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  			<h5 class="my-0 mr-md-auto font-weight-normal">MyVanity</h5>
+  			<nav class="my-2 my-md-0 mr-md-3">
+  				<a id="site-message" class="p-2 text-dark" href="#"></a>
+  				<!-- should be actual link not javascript (too heavy else wise) -->
+  				<a id="show-all" class="p-2 text-dark" href="index.html">Show All</a>
+  				<a id="show-favs" class="p-2 text-dark" href="fav.html">Show Favs</a>
+
+  				<a id="reset" class="p-2 text-dark" href="#" style="display: none">Reset</a>
+  			</nav>
+  		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="AllBrands">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- passport for the eyeshadow when you hover over the eyeshadow -->
+		<div id="passport" class="passport">
+			<div class="container">
+				<div id="name-row" class="row" style="height:30px">
+					<div id="passport-eyeshadow-name" class="col-sm-8 text-center" style="font-size:12px;">
+						Eyeshadow Name
+					</div>
+					<div class="col-sm-4 text-center" style="display:inline-block">
+						<i id="passport-like-icon" class="far fa-heart"></i>
+						<i id="passport-palette-icon" class="fas fa-palette"></i>
+						<i id="passport-close-icon" class="far fa-window-close"></i>
+					</div>
+				</div>
+				<div class="row" style="height:120px">
+					<div class="col-sm-4" style="position:relative">
+						<div id="passport-eyeshadow-color" class="passport-eyeshadow" >
+							<img src="images/satin.png" class="sparkle_image" id="passport_image_sparkle">
+						</div>
+					</div>
+					<div class="col-sm-8 text-left">
+						<div id="passport-palette-name" class="passport-info">Palette</div>
+						<div id="passport-brand-name" class="passport-info">Brand</div>
+						<div id="passport-finish-name" class="passport-info">Finish</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    	<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<!-- data -->
+		<script src="brands.js"></script>
+		<script src="eyeshadow.js"></script>
+		<script src="eyeshadowdetails.js"></script>
+		<script src="palette.js"></script>
+		<!-- functionality -->
+		<script>
+			$(document).ready(function(){
+				var message = document.getElementById("site-message");
+				var dt = new Date();
+				if(dt.getHours() < 12 ){
+					message.innerText = "Good Morning";
+				}else if (dt.getHours() < 17){
+					message.innerText = "Good Afternoon";
+				}else{
+					message.innerText = "Good Evening";
+				}
+			});
+		</script>
+		<script>
+			function findEyeshadow(name, brand){
+				for(var eyeshadow in allEyeshadowDetails){
+					if(allEyeshadowDetails[eyeshadow].name == name && allEyeshadowDetails[eyeshadow].brand == brand){
+						return allEyeshadowDetails[eyeshadow];
+					}
+				}
+				return -1;
+			}	
+			function findEyeshadows(brand, palette){
+				var found = [];
+				for(var eyeshadow in allEyeshadowDetails){
+					if(allEyeshadowDetails[eyeshadow].brand == brand && allEyeshadowDetails[eyeshadow].palette.trim() == palette.trim() ){
+						found.push(allEyeshadowDetails[eyeshadow]);
+					}
+				}
+				return found;
+			}		
+			function findEyeshadowRGB(name, brand){
+				for(var eyeshadow in window[brand]){
+					
+					if(eyeshadow == name){
+						return window[brand][eyeshadow];
+					}
+				}
+				return -10;
+			}
+		</script>
+		<script>
+			$(document).ready(function(){
+				var allBrandDiv = document.getElementById('AllBrands')
+				$.each((window.brands), function(value){
+					var newBrandDiv = document.createElement("a");
+					newBrandDiv.href = "#";
+					newBrandDiv.id = window.brands[value];
+					newBrandDiv.classList.add("brand");
+
+				
+
+					//add brand title
+					var title = document.createElement("h3");
+					title.innerText = window.brands[value].replace( new RegExp("_", "g"), " ");
+					
+					var plusIcon = document.createElement("i");
+					plusIcon.id = window.brands[value] + "icon";
+					plusIcon.classList.add("fas");
+					plusIcon.classList.add("fa-chevron-down");
+					plusIcon.classList.add("brand-arrow");
+					title.appendChild(plusIcon);
+					
+					newBrandDiv.appendChild(title);
+					allBrandDiv.appendChild(newBrandDiv);
+					$(newBrandDiv).on("click", brandToggle)
+
+
+					//WHERE EYESHADOWS GO
+					var brandEyeshadowdiv = document.createElement("div")
+					brandEyeshadowdiv.id = window.brands[value] + "div";
+					brandEyeshadowdiv.classList.add("eyeshadow-display");
+					// brandEyeshadowdiv.style.display = "none";
+					brandEyeshadowdiv.style.width = "90%";
+					brandEyeshadowdiv.style.margin = "auto";
+					allBrandDiv.appendChild(brandEyeshadowdiv);
+
+					
+
+					var brand = window.brands[value];
+					
+
+					//add palette names
+					var palettes = paletteNames[brand.split('_').join(' ')];
+					$.each((palettes), function(key, value){
+						var paletteTitle = document.createElement("h5");
+						paletteTitle.innerText = value;
+						brandEyeshadowdiv.appendChild(paletteTitle);
+
+						//add eyeshadow by brand, palette
+						allEyeshadows = findEyeshadows(brand.split('_').join(' '), value);
+						$.each((allEyeshadows), function(key, value){
+
+							rgb = findEyeshadowRGB(value.name, value.brand.split(' ').join('_'));
+
+							var eyeshadow = document.createElement("div");
+							eyeshadow.classList.add("eyeshadow");
+							eyeshadow.classList.add(value.name.split(' ').join('_'))
+							eyeshadow.classList.add(value.brand.split(' ').join('_'));
+						//eyeshadow.innerText = key;
+							eyeshadow.style.backgroundColor = rgb;
+							eyeshadow.style.width = "50px";
+							eyeshadow.style.height = "50px";
+							eyeshadow.style.color = rgb;
+							eyeshadow.style.overflow = "hidden";
+
+							//check finish
+							eyeshadowDetails = value;
+							if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
+								var image = document.createElement("img");
+								image.src = "images/satin.png";
+								image.classList.add("satin_image");
+								eyeshadow.appendChild(image);
+							}else if (eyeshadowDetails.finish != "matte"){
+								var image = document.createElement("img");
+								image.src = "images/sparkle.png";
+								image.classList.add("sparkle_image");
+								eyeshadow.appendChild(image);
+							}
+
+							brandEyeshadowdiv.append(eyeshadow);
+							$(eyeshadow).on("click", showPassport);
+						});
+					});
+					
+
+					
+
+					//var eyeShadows = window[brand];
+					// $.each((eyeShadows), function(key, value){
+					// 	//key == eyeshadowname
+					// 	//value == rgb
+					// 	var eyeshadow = document.createElement("div");
+					// 	eyeshadow.classList.add("eyeshadow");
+					// 	eyeshadow.classList.add(key.split(' ').join('_'))
+					// 	eyeshadow.classList.add(brand.split(' ').join('_'));
+					// //eyeshadow.innerText = key;
+					// 	eyeshadow.style.backgroundColor = value;
+					// 	eyeshadow.style.width = "50px";
+					// 	eyeshadow.style.height = "50px";
+					// 	eyeshadow.style.color = value;
+					// 	eyeshadow.style.overflow = "hidden";
+
+					// //check finish
+					// 	eyeshadowDetails = findEyeshadow(key, brand.split('_').join(' '));
+					// 	if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
+					// 		var image = document.createElement("img");
+					// 		image.src = "images/satin.png";
+					// 		image.classList.add("satin_image");
+					// 		eyeshadow.appendChild(image);
+					// 	}else if (eyeshadowDetails.finish != "matte"){
+					// 		var image = document.createElement("img");
+					// 		image.src = "images/sparkle.png";
+					// 		image.classList.add("sparkle_image");
+					// 		eyeshadow.appendChild(image);
+					// 	}
+
+					// 	brandEyeshadowdiv.appendChild(eyeshadow);
+
+					// 	$(eyeshadow).on("click", showPassport);
+					// });
+				});
+			});
+
+			function brandToggle(){
+				var brand = this.id;
+				//get eyeshadow div
+				var div = document.getElementById(brand + "div");
+
+				if(div.style.display == "none"){
+					showEyeshadows(this.id);
+				}else{
+					hideEyeshadows(this.id);
+				}
+
+				return false;//this is important to maintain scroll position
+
+			}
+			function hideEyeshadows(id){
+				var divtohide = document.getElementById(id + "div");
+				$(divtohide).hide(500, "swing");
+				//change icon to chevron up
+				var icon = document.getElementById(id + "icon");
+				icon.classList.remove("fa-chevron-down");
+				icon.classList.add("fa-chevron-up");
+
+			}
+
+			function showEyeshadows(id){
+				var brand = id; 
+				var divtoadd = document.getElementById(brand + "div");
+
+				//change icon to chevron up
+				var icon = document.getElementById(id + "icon");
+				icon.classList.add("fa-chevron-down");
+				icon.classList.remove("fa-chevron-up");
+
+				$(divtoadd).show(500,"swing");
+			}
+		</script>
+		<script src="js/passport.js"></script>
+		<script src="js/menu.js"></script>
+	</body>
+</html>
