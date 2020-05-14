@@ -8,7 +8,7 @@ function showPassport(e){
 					//get local storage
 	var brand = eyeshadowDetails.brand;
 	var name = eyeshadowinfo.classList[1].split('_').join(' ');
-	var line = brand + " " + name;
+	var line = "fav_" + brand + "_" + name;
 	var result = 0;
 	if(localStorage[line]){
 		result = localStorage[line];
@@ -62,7 +62,7 @@ $("#passport-like-icon").click(function(){
 	//get brand and eyeshadow name
 	var brand = document.getElementById("passport-brand-name").innerText;
 	var name = document.getElementById("passport-eyeshadow-name").innerText;
-	var line = brand + " " + name;
+	var line = "fav_" + brand + "_" + name;
 	// localStorage.setItem();
 	//toggle the value here
 	//fas is solid
