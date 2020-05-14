@@ -98,9 +98,6 @@ $("#passport-palette-icon").click(function(){
 			var thiseyeshadow = allEyeshadows[i].classList[1].split('_').join(' ');
 			//find the palette
 			var eyeshadowDetails = findEyeshadow(thiseyeshadow);
-			console.log(eyeshadowDetails.palette);
-
-
 			if(eyeshadowDetails.palette == palette && eyeshadowDetails.brand == brand){
 				allEyeshadows[i].style.display = "inline-block";
 			}else{
@@ -112,8 +109,8 @@ $("#passport-palette-icon").click(function(){
 		$.each((window.brands), function(value){
 			var branddiv = document.getElementById(window.brands[value]);
 			// var count = 0;
-			// console.log(window.brands[value]);
-			if(window.brands[value] != brand){
+			console.log(window.brands[value]);
+			if(window.brands[value].split('_').join(' ') != brand){
 				document.getElementById(window.brands[value]).style.display = "none";
 			}
 		});
