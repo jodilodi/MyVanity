@@ -77,6 +77,7 @@ function showEyeshadows(id){
 		var eyeshadow = document.createElement("div");
 		eyeshadow.classList.add("eyeshadow");
 		eyeshadow.classList.add(key.split(' ').join('_'))
+		eyeshadow.classList.add(brand.split(' ').join('_'));
 		//eyeshadow.innerText = key;
 		eyeshadow.style.backgroundColor = value;
 		eyeshadow.style.width = "50px";
@@ -85,7 +86,7 @@ function showEyeshadows(id){
 		eyeshadow.style.overflow = "hidden";
 
 		//check finish
-		eyeshadowDetails = findEyeshadow(key);
+		eyeshadowDetails = findEyeshadow(key, brand);
 		if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
 			var image = document.createElement("img");
 			image.src = "images/satin.png";

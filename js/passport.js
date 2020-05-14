@@ -1,11 +1,11 @@
 var eyeshadowinfo;
 function showPassport(e){
-	eyeshadowDetails = findEyeshadow(this.classList[1].split('_').join(' '));
-		passport = document.getElementById("passport");
-		eyeshadowinfo = this;
+	eyeshadowDetails = findEyeshadow(this.classList[1].split('_').join(' '), this.classList[2].split('_').join(' '));
+	passport = document.getElementById("passport");
+	eyeshadowinfo = this;
 	passport_sparkle_image = document.getElementById("passport_image_sparkle");
 					
-					//get local storage
+	//get local storage
 	var brand = eyeshadowDetails.brand;
 	var name = eyeshadowinfo.classList[1].split('_').join(' ');
 	var line = "fav_" + brand + "_" + name;
@@ -97,7 +97,7 @@ $("#passport-palette-icon").click(function(){
 		for(var i = 0; i < allEyeshadows.length; i++){
 			var thiseyeshadow = allEyeshadows[i].classList[1].split('_').join(' ');
 			//find the palette
-			var eyeshadowDetails = findEyeshadow(thiseyeshadow);
+			var eyeshadowDetails = findEyeshadow(thiseyeshadow, brand);
 			if(eyeshadowDetails.palette == palette && eyeshadowDetails.brand == brand){
 				allEyeshadows[i].style.display = "inline-block";
 			}else{
@@ -108,8 +108,6 @@ $("#passport-palette-icon").click(function(){
 		//well if brand is not the same as eyeshadow brand then hide
 		$.each((window.brands), function(value){
 			var branddiv = document.getElementById(window.brands[value]);
-			// var count = 0;
-			console.log(window.brands[value]);
 			if(window.brands[value].split('_').join(' ') != brand){
 				document.getElementById(window.brands[value]).style.display = "none";
 			}
