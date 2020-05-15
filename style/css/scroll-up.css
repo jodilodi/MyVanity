@@ -1,0 +1,14 @@
+#scrollUpDiv{
+	position: fixed;
+	bottom:0px;
+	right:0px;
+	height:60px;
+	width:60px;
+	background-color:white;
+	text-align:center;
+	display:none;
+}
+#scrollUpIcon{
+	display:inline-block;
+	line-height: 60px;
+}
