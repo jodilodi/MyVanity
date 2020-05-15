@@ -115,19 +115,7 @@
 		<script src="eyeshadowdetails.js"></script>
 		<!-- functionality -->
 		<script src="js/passport.js"></script>
-		<script>
-			$(document).ready(function(){
-				var message = document.getElementById("site-message");
-				var dt = new Date();
-				if(dt.getHours() < 12 ){
-					message.innerText = "Good Morning";
-				}else if (dt.getHours() < 17){
-					message.innerText = "Good Afternoon";
-				}else{
-					message.innerText = "Good Evening";
-				}
-			});
-		</script>
+		<script src="js/site-message.js"></script>
 		<script src="js/db-search.js"></script>
 		<script src="js/build-eyeshadow-fav.js"></script>
 		<script src="js/go-to-menu.js"></script>

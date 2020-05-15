@@ -42,23 +42,19 @@
 				/*padding-top: 20px;*/
 				color:black;
 			}
-
-			
-		</style>
-		<style>
 			.eyeshadow-display div{
 				display:inline-block;
 			}
-		</style>
-		<style>
 			.brand-arrow{
 				margin-left:10px;
 			}
 		</style>
+
 		<link href="go-to.css" rel="stylesheet">
 		<link href="passport.css" rel="stylesheet">
+		<link href="scroll-up.css" rel="stylesheet">
 	</head>
-	<body>
+	<body >
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   			<h5 class="my-0 mr-md-auto font-weight-normal">MyVanity</h5>
   			<nav class="my-2 my-md-0 mr-md-3">
@@ -79,7 +75,9 @@
 				</div>
 			</div>
 		</div>
-
+		<div id="scrollUpDiv">
+			<i id="scrollUpIcon" class="fas fa-chevron-up fa-2x"></i>
+		</div>
 		<!-- passport for the eyeshadow when you hover over the eyeshadow -->
 		<div id="passport" class="passport">
 			<div class="container">
@@ -109,7 +107,6 @@
 		</div>
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    	<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -119,24 +116,13 @@
 		<script src="eyeshadow.js"></script>
 		<script src="eyeshadowdetails.js"></script>
 		<!-- functionality -->
-		<script>
-			$(document).ready(function(){
-				var message = document.getElementById("site-message");
-				var dt = new Date();
-				if(dt.getHours() < 12 ){
-					message.innerText = "Good Morning";
-				}else if (dt.getHours() < 17){
-					message.innerText = "Good Afternoon";
-				}else{
-					message.innerText = "Good Evening";
-				}
-			});
-		</script>
+		<script src="js/site-message.js"></script>
 		<script src="js/db-search.js"></script>
 		<script src="js/build-eyeshadow-v2.js"></script>
 		<script src="js/passport.js"></script>
 		<script src="js/menu.js"></script>
 		<script src="js/go-to-menu.js"></script>
 		<script src="js/brand-toggle.js"></script>
+		<script src="js/scroll-up.js"></script>
 	</body>
 </html>
