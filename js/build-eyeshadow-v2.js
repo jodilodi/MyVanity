@@ -39,6 +39,7 @@ $(document).ready(function(){
 			eyeshadow.classList.add("eyeshadow");
 			eyeshadow.classList.add(key.split(' ').join('_'))
 			eyeshadow.classList.add(brand.split(' ').join('_'));
+			
 		//eyeshadow.innerText = key;
 			eyeshadow.style.backgroundColor = value;
 			eyeshadow.style.width = "50px";

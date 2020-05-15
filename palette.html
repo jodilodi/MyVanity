@@ -252,6 +252,8 @@
 					$.each((palettes), function(key, value){
 						var paletteTitle = document.createElement("h5");
 						paletteTitle.innerText = value;
+						paletteTitle.classList.add("palette-title")
+
 						brandEyeshadowdiv.appendChild(paletteTitle);
 
 						//add eyeshadow by brand, palette
@@ -289,43 +291,7 @@
 							$(eyeshadow).on("click", showPassport);
 						});
 					});
-					
 
-					
-
-					//var eyeShadows = window[brand];
-					// $.each((eyeShadows), function(key, value){
-					// 	//key == eyeshadowname
-					// 	//value == rgb
-					// 	var eyeshadow = document.createElement("div");
-					// 	eyeshadow.classList.add("eyeshadow");
-					// 	eyeshadow.classList.add(key.split(' ').join('_'))
-					// 	eyeshadow.classList.add(brand.split(' ').join('_'));
-					// //eyeshadow.innerText = key;
-					// 	eyeshadow.style.backgroundColor = value;
-					// 	eyeshadow.style.width = "50px";
-					// 	eyeshadow.style.height = "50px";
-					// 	eyeshadow.style.color = value;
-					// 	eyeshadow.style.overflow = "hidden";
-
-					// //check finish
-					// 	eyeshadowDetails = findEyeshadow(key, brand.split('_').join(' '));
-					// 	if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
-					// 		var image = document.createElement("img");
-					// 		image.src = "images/satin.png";
-					// 		image.classList.add("satin_image");
-					// 		eyeshadow.appendChild(image);
-					// 	}else if (eyeshadowDetails.finish != "matte"){
-					// 		var image = document.createElement("img");
-					// 		image.src = "images/sparkle.png";
-					// 		image.classList.add("sparkle_image");
-					// 		eyeshadow.appendChild(image);
-					// 	}
-
-					// 	brandEyeshadowdiv.appendChild(eyeshadow);
-
-					// 	$(eyeshadow).on("click", showPassport);
-					// });
 				});
 			});
 

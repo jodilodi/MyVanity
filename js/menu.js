@@ -12,6 +12,11 @@ $("#reset").click(function(){
 		for(var i = 0; i < allEyeshadows.length; i++){
 			allEyeshadows[i].style.display = "inline-block";
 		}
+
+		//palette titles
+		$.each(document.getElementsByClassName('palette-title'), function(key, value){
+			this.style.display = "block";
+		});
 	});
 
 	this.style.display = "none";

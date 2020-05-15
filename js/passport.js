@@ -1,6 +1,13 @@
 var eyeshadowinfo;
 function showPassport(e){
-	eyeshadowDetails = findEyeshadow(this.classList[1].split('_').join(' '), this.classList[2].split('_').join(' '));
+	name = this.classList[1].split('_').join(' ');
+	brand;
+	if(this.classList.length == 2){
+		brand = name;
+	}else{
+		brand = this.classList[2].split('_').join(' ');
+	}
+	eyeshadowDetails = findEyeshadow(name, brand);
 	passport = document.getElementById("passport");
 	eyeshadowinfo = this;
 	passport_sparkle_image = document.getElementById("passport_image_sparkle");
@@ -96,8 +103,16 @@ $("#passport-palette-icon").click(function(){
 		var allEyeshadows = document.getElementsByClassName("eyeshadow");
 		for(var i = 0; i < allEyeshadows.length; i++){
 			var thiseyeshadow = allEyeshadows[i].classList[1].split('_').join(' ');
+
+			//this wont work if the brand and eyeshadow name is the same
 			//find the palette
-			var eyeshadowDetails = findEyeshadow(thiseyeshadow, brand);
+			var thiseyeshadowbrand;
+			if(allEyeshadows[i].classList.length == 2){
+				thiseyeshadowbrand = allEyeshadows[i].classList[1].split('_').join(' ');
+			}else{
+				thiseyeshadowbrand = allEyeshadows[i].classList[2].split('_').join(' ');
+			}
+			var eyeshadowDetails = findEyeshadow(thiseyeshadow, thiseyeshadowbrand);
 			if(eyeshadowDetails.palette == palette && eyeshadowDetails.brand == brand){
 				allEyeshadows[i].style.display = "inline-block";
 			}else{
@@ -110,6 +125,15 @@ $("#passport-palette-icon").click(function(){
 			var branddiv = document.getElementById(window.brands[value]);
 			if(window.brands[value].split('_').join(' ') != brand){
 				document.getElementById(window.brands[value]).style.display = "none";
+			}
+		});
+
+		//also find any palette name title
+		$.each(document.getElementsByClassName('palette-title'), function(key, value){
+			if(value.innerText != palette){
+				this.style.display = "none";
+			}else{
+				this.style.display = "block";
 			}
 		});
 	});//end of passport swing	
