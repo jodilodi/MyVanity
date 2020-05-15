@@ -43,50 +43,7 @@
 				color:black;
 			}
 
-			.passport{
-				background-color:#fff8e7;
-				height: 150px;
-				width:242px;
-				border-radius: 20px;
-				z-index: 10;
-				display:none;
-			}
-
-			#passport-eyeshadow-name, #passport-like-icon, #passport-close-icon{
-			line-height:30px;
-			}
-
-			#name-row{
-				border-bottom: 1px solid black;
-			}
-
-			.passport-eyeshadow{
-				background-color: #0000FF; 
-				margin-top: 35px;
-				border-radius: 50%;
-				float:left;
-				height:50px;
-				width:50px;
-			}
-
-			.passport-info{
-				font-size:12px;
-			}
-
-			#passport-palette-name{
-				font-style:italic;
-			}
-
-			#passport-brand-name{
-				font-weight:bold;
-			}
-		
-			.sparkle_image, .satin_image{
-				transform: rotate(270deg);
-				width: 50px;
-				height:50px;
-				border-radius: 50%;
-			}
+			
 		</style>
 		<style>
 			.eyeshadow-display div{
@@ -98,6 +55,8 @@
 				margin-left:10px;
 			}
 		</style>
+		<link href="go-to.css" rel="stylesheet">
+		<link href="passport.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -111,7 +70,7 @@
   				<a id="reset" class="p-2 text-dark" href="#" style="display: none">Reset</a>
   			</nav>
   		</div>
-
+  		<div id="GoToDiv" class="container"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
@@ -125,10 +84,10 @@
 		<div id="passport" class="passport">
 			<div class="container">
 				<div id="name-row" class="row" style="height:30px">
-					<div id="passport-eyeshadow-name" class="col-sm-8 text-center" style="font-size:12px;">
+					<div id="passport-eyeshadow-name" class="col-sm-7 text-center" style="font-size:12px;">
 						Eyeshadow Name
 					</div>
-					<div class="col-sm-4 text-center" style="display:inline-block">
+					<div class="col-sm-5 text-center" style="display:inline-block">
 						<i id="passport-like-icon" class="far fa-heart"></i>
 						<i id="passport-palette-icon" class="fas fa-palette"></i>
 						<i id="passport-close-icon" class="far fa-window-close"></i>
@@ -173,18 +132,11 @@
 				}
 			});
 		</script>
-		<script>
-			function findEyeshadow(name, brand){
-				for(var eyeshadow in allEyeshadowDetails){
-					if(allEyeshadowDetails[eyeshadow].name == name && allEyeshadowDetails[eyeshadow].brand == brand){
-						return allEyeshadowDetails[eyeshadow];
-					}
-				}
-				return -1;
-			}			
-		</script>
+		<script src="js/db-search.js"></script>
 		<script src="js/build-eyeshadow-v2.js"></script>
 		<script src="js/passport.js"></script>
 		<script src="js/menu.js"></script>
+		<script src="js/go-to-menu.js"></script>
+		<script src="js/brand-toggle.js"></script>
 	</body>
 </html>

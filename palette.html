@@ -43,50 +43,7 @@
 				color:black;
 			}
 
-			.passport{
-				background-color:#fff8e7;
-				height: 150px;
-				width:242px;
-				border-radius: 20px;
-				z-index: 10;
-				display:none;
-			}
-
-			#passport-eyeshadow-name, #passport-like-icon, #passport-close-icon{
-			line-height:30px;
-			}
-
-			#name-row{
-				border-bottom: 1px solid black;
-			}
-
-			.passport-eyeshadow{
-				background-color: #0000FF; 
-				margin-top: 35px;
-				border-radius: 50%;
-				float:left;
-				height:50px;
-				width:50px;
-			}
-
-			.passport-info{
-				font-size:12px;
-			}
-
-			#passport-palette-name{
-				font-style:italic;
-			}
-
-			#passport-brand-name{
-				font-weight:bold;
-			}
-		
-			.sparkle_image, .satin_image{
-				transform: rotate(270deg);
-				width: 50px;
-				height:50px;
-				border-radius: 50%;
-			}
+			
 		</style>
 		<style>
 			.eyeshadow-display{
@@ -102,6 +59,8 @@
 				margin-left:10px;
 			}
 		</style>
+		<link href="passport.css" rel="stylesheet">
+		<link href="go-to.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -115,7 +74,7 @@
   				<a id="reset" class="p-2 text-dark" href="#" style="display: none">Reset</a>
   			</nav>
   		</div>
-
+		<div id="GoToDiv" class="container"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
@@ -129,10 +88,10 @@
 		<div id="passport" class="passport">
 			<div class="container">
 				<div id="name-row" class="row" style="height:30px">
-					<div id="passport-eyeshadow-name" class="col-sm-8 text-center" style="font-size:12px;">
+					<div id="passport-eyeshadow-name" class="col-sm-7 text-center" style="font-size:12px;">
 						Eyeshadow Name
 					</div>
-					<div class="col-sm-4 text-center" style="display:inline-block">
+					<div class="col-sm-5 text-center" style="display:inline-block">
 						<i id="passport-like-icon" class="far fa-heart"></i>
 						<i id="passport-palette-icon" class="fas fa-palette"></i>
 						<i id="passport-close-icon" class="far fa-window-close"></i>
@@ -178,160 +137,11 @@
 				}
 			});
 		</script>
-		<script>
-			function findEyeshadow(name, brand){
-				for(var eyeshadow in allEyeshadowDetails){
-					if(allEyeshadowDetails[eyeshadow].name == name && allEyeshadowDetails[eyeshadow].brand == brand){
-						return allEyeshadowDetails[eyeshadow];
-					}
-				}
-				return -1;
-			}	
-			function findEyeshadows(brand, palette){
-				var found = [];
-				for(var eyeshadow in allEyeshadowDetails){
-					if(allEyeshadowDetails[eyeshadow].brand == brand && allEyeshadowDetails[eyeshadow].palette.trim() == palette.trim() ){
-						found.push(allEyeshadowDetails[eyeshadow]);
-					}
-				}
-				return found;
-			}		
-			function findEyeshadowRGB(name, brand){
-				for(var eyeshadow in window[brand]){
-					
-					if(eyeshadow == name){
-						return window[brand][eyeshadow];
-					}
-				}
-				return -10;
-			}
-		</script>
-		<script>
-			$(document).ready(function(){
-				var allBrandDiv = document.getElementById('AllBrands')
-				$.each((window.brands), function(value){
-					var newBrandDiv = document.createElement("a");
-					newBrandDiv.href = "#";
-					newBrandDiv.id = window.brands[value];
-					newBrandDiv.classList.add("brand");
-
-				
-
-					//add brand title
-					var title = document.createElement("h3");
-					title.innerText = window.brands[value].replace( new RegExp("_", "g"), " ");
-					
-					var plusIcon = document.createElement("i");
-					plusIcon.id = window.brands[value] + "icon";
-					plusIcon.classList.add("fas");
-					plusIcon.classList.add("fa-chevron-down");
-					plusIcon.classList.add("brand-arrow");
-					title.appendChild(plusIcon);
-					
-					newBrandDiv.appendChild(title);
-					allBrandDiv.appendChild(newBrandDiv);
-					$(newBrandDiv).on("click", brandToggle)
-
-
-					//WHERE EYESHADOWS GO
-					var brandEyeshadowdiv = document.createElement("div")
-					brandEyeshadowdiv.id = window.brands[value] + "div";
-					brandEyeshadowdiv.classList.add("eyeshadow-display");
-					// brandEyeshadowdiv.style.display = "none";
-					brandEyeshadowdiv.style.width = "90%";
-					brandEyeshadowdiv.style.margin = "auto";
-					allBrandDiv.appendChild(brandEyeshadowdiv);
-
-					
-
-					var brand = window.brands[value];
-					
-
-					//add palette names
-					var palettes = paletteNames[brand.split('_').join(' ')];
-					$.each((palettes), function(key, value){
-						var paletteTitle = document.createElement("h5");
-						paletteTitle.innerText = value;
-						paletteTitle.classList.add("palette-title")
-
-						brandEyeshadowdiv.appendChild(paletteTitle);
-
-						//add eyeshadow by brand, palette
-						allEyeshadows = findEyeshadows(brand.split('_').join(' '), value);
-						$.each((allEyeshadows), function(key, value){
-
-							rgb = findEyeshadowRGB(value.name, value.brand.split(' ').join('_'));
-
-							var eyeshadow = document.createElement("div");
-							eyeshadow.classList.add("eyeshadow");
-							eyeshadow.classList.add(value.name.split(' ').join('_'))
-							eyeshadow.classList.add(value.brand.split(' ').join('_'));
-						//eyeshadow.innerText = key;
-							eyeshadow.style.backgroundColor = rgb;
-							eyeshadow.style.width = "50px";
-							eyeshadow.style.height = "50px";
-							eyeshadow.style.color = rgb;
-							eyeshadow.style.overflow = "hidden";
-
-							//check finish
-							eyeshadowDetails = value;
-							if(eyeshadowDetails.finish == "satin" || eyeshadowDetails.finish == "pearl"){
-								var image = document.createElement("img");
-								image.src = "images/satin.png";
-								image.classList.add("satin_image");
-								eyeshadow.appendChild(image);
-							}else if (eyeshadowDetails.finish != "matte"){
-								var image = document.createElement("img");
-								image.src = "images/sparkle.png";
-								image.classList.add("sparkle_image");
-								eyeshadow.appendChild(image);
-							}
-
-							brandEyeshadowdiv.append(eyeshadow);
-							$(eyeshadow).on("click", showPassport);
-						});
-					});
-
-				});
-			});
-
-			function brandToggle(){
-				var brand = this.id;
-				//get eyeshadow div
-				var div = document.getElementById(brand + "div");
-
-				if(div.style.display == "none"){
-					showEyeshadows(this.id);
-				}else{
-					hideEyeshadows(this.id);
-				}
-
-				return false;//this is important to maintain scroll position
-
-			}
-			function hideEyeshadows(id){
-				var divtohide = document.getElementById(id + "div");
-				$(divtohide).hide(500, "swing");
-				//change icon to chevron up
-				var icon = document.getElementById(id + "icon");
-				icon.classList.remove("fa-chevron-down");
-				icon.classList.add("fa-chevron-up");
-
-			}
-
-			function showEyeshadows(id){
-				var brand = id; 
-				var divtoadd = document.getElementById(brand + "div");
-
-				//change icon to chevron up
-				var icon = document.getElementById(id + "icon");
-				icon.classList.add("fa-chevron-down");
-				icon.classList.remove("fa-chevron-up");
-
-				$(divtoadd).show(500,"swing");
-			}
-		</script>
+		<script src="js/db-search.js"></script>
+		<script src="js/build-eyeshadow-palette.js"></script>
 		<script src="js/passport.js"></script>
 		<script src="js/menu.js"></script>
+		<script src="js/go-to-menu.js"></script>
+		<script src="js/brand-toggle.js"></script>
 	</body>
 </html>
